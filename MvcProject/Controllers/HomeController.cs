@@ -14,34 +14,36 @@ namespace MvcProject.Controllers
        
         public ActionResult Index()
         {
-         
+            using (var ctx = new BuyForUDB()) { var p = ctx.Prodoct.ToList(); }
+               
             return View();
         }
 
-        public ActionResult Login(User user)
-        {
+      //  public ActionResult Login(User user)
+       // {
 
-            using (var ctx = new BuyForUDB())
-            {
+            //using (var ctx = new BuyForUDB())
+            //{
 
-                var userDtails = ctx.Users.Where
-                    (u => u.UserName == user.UserName
-                    && u.Password == user.Password)
-                    .FirstOrDefault();
+            //    var userDtails = ctx.Users.Where
+            //        (u => u.UserName == user.UserName
+            //        && u.Password == user.Password)
+            //        .FirstOrDefault();
 
-                if (userDtails != null)
-                {
-                    FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
-                }
+            //    if (userDtails != null)
+            //    {
+            //        FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
+            //    }
 
-                return RedirectToAction("Index");
-            }
-        }
+            //    return RedirectToAction("Index");
+          //  }
+   //     }
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index");
-        }
 
+        }
+      //  public ActionResult List()
     }
 }

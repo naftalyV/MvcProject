@@ -1,9 +1,12 @@
 ﻿
+@model IEnumerable<MvcProject.Models.Prodoct>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Buy For U</h2>
+This is home page
 
 
 @if (User.Identity.IsAuthenticated)
@@ -15,3 +18,7 @@ else
     @Html.Partial("Login")
 
 }
+
+
+
+

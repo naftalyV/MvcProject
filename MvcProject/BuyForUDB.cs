@@ -16,6 +16,7 @@ namespace MvcProject
 
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Prodoct> Prodoct { get; set; }
     }
 
 
