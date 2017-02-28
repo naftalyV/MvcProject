@@ -8,7 +8,7 @@ using MvcProject.Models;
 
 namespace MvcProject
 {
-    public class BuyForUDbInitializer :DropCreateDatabaseAlways<BuyForUDB>
+    public class BuyForUDbInitializer :DropCreateDatabaseIfModelChanges<BuyForUDB>
     {
         protected override void Seed(BuyForUDB context)
         {
@@ -30,6 +30,11 @@ namespace MvcProject
                 Password = "123"
             };
             context.Users.Add(u1);
+            var p = new Prodoct()
+            { Id = 1,
+                picture1 = null
+
+            };
         }
     }
 }
