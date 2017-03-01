@@ -7,6 +7,5 @@ namespace MvcProject.DB
 {
     public class Repository
     {
-
     }
 }

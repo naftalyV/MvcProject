@@ -52,11 +52,27 @@ namespace MvcProject.Controllers
         [HttpPost]
         public ActionResult SubmitData(Prodoct p)
         {
-            foreach (HttpPostedFileBase file in HttpContext.Request.Files)
+            HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
+            int length= wrapper.Count;
+            for (int i = 0; i < length; i++)
             {
-                if (file != null && file.ContentLength > 0 && file.ContentType.StartsWith("image"))
+                if (wrapper[i] != null && wrapper[i].ContentLength > 0 && wrapper[i].ContentType.StartsWith("image"))
                 {
-                    p.picture1 = GetByteArray(file);
+                    switch (i)
+                    {
+                        case 0:
+                            p.picture1 = GetByteArray(wrapper[i]);
+                            break;
+                        case 1:
+                            p.picture2= GetByteArray(wrapper[i]);
+                            break;
+                        case 2:
+                            p.picture3 = GetByteArray(wrapper[i]);
+                            break;
+                        default:
+                            break;
+                    }
+                   
                 }
             }
 

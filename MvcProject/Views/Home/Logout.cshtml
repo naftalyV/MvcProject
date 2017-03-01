@@ -12,8 +12,12 @@
 
         @Html.EditorFor(x => x.Title)
 
-        <input type="file" name="file1" id="file" />
-        <input type="file" name="file2" id="file" />
-        <input type="file" name="file3" id="file"/>
+        <div id="multiple">
+            <input type="file" class="multiple" name="files" multiple />
+        </div>
+
+        <input type="file" name="file1" />
+        <input type="file" name="file2" />
+        <input type="file" name="file3"/>
         <input type="submit" value="Send to server" />
     }
