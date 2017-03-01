@@ -8,7 +8,7 @@ using MvcProject.Models;
 
 namespace MvcProject
 {
-    public class BuyForUDbInitializer :DropCreateDatabaseIfModelChanges<BuyForUDB>
+    public class BuyForUDbInitializer : DropCreateDatabaseIfModelChanges<BuyForUDB>
     {
         protected override void Seed(BuyForUDB context)
         {
@@ -20,7 +20,8 @@ namespace MvcProject
             //    new User() { },
             //    new User() { }
             //};
-            var u1 = new User() {
+            var u1 = new User()
+            {
                 id = 1,
                 FirstName = "naftaly",
                 LastNama = "waisenshtern",
@@ -31,7 +32,8 @@ namespace MvcProject
             };
             context.Users.Add(u1);
             var p = new Prodoct()
-            { Id = 1,
+            {
+                Id = 1,
                 picture1 = null
 
             };

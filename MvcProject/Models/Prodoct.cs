@@ -21,9 +21,9 @@ namespace MvcProject.Models
         public string LongDescription { get; set; }
         public DateTime Date { get; set; }
         public decimal Price { get; set; }
-        public byte?[] picture1 { get; set; }
-        public byte?[] picture2 { get; set; }
-        public byte?[] picture3 { get; set; }
+        public byte[] picture1 { get; set; }
+        public byte[] picture2 { get; set; }
+        public byte[] picture3 { get; set; }
         public  State Status{ get; set; }
 
     }

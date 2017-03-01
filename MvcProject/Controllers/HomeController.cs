@@ -12,11 +12,11 @@ namespace MvcProject.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-       
+
         public ActionResult Index()
         {
             //using (var ctx = new BuyForUDB()) { var p = ctx.Prodoct.ToList(); }
-               
+
             return View();
         }
 
@@ -39,30 +39,58 @@ namespace MvcProject.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [Authorize]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index");
 
         }
+
+        [Authorize]
         [HttpPost]
-        public ActionResult SubmitData(Prodoct p, HttpPostedFileBase file)
+        public ActionResult SubmitData(Prodoct p)
         {
-            if (file != null && file.ContentLength > 0)
+            foreach (HttpPostedFileBase file in HttpContext.Request.Files)
             {
-                string path = Path.Combine(Server.MapPath("~/Images"),
-                                         Path.GetFileName(file.FileName));
-                file.SaveAs(path);
+                if (file != null && file.ContentLength > 0 && file.ContentType.StartsWith("image"))
+                {
+                    p.picture1 = GetByteArray(file);
+                }
+            }
+
+            //if (file != null && file.ContentLength > 0 && file.ContentType.StartsWith("image"))
+            //{
+            // extract only the fielname
+            //var fileName = Path.GetFileName(file.FileName);
+            // store the file inside ~/Images folder
+            //var path = Path.Combine(Server.MapPath("~/Images"), fileName);
+            //file.SaveAs(path);
+            //TODO:..
+            //p.picture1 = GetByteArray(file);
+            p.Date = DateTime.Now;
+            p.Price = 9;
+            p.Title = "hi";
+            p.Id = 99;
+
+            using (var ctx = new BuyForUDB())
+            {
+                ctx.Prodoct.Add(p);
+                ctx.SaveChanges();
                 ViewBag.Message = "File uploaded successfully";
-
-
-
-                byte[] data = GetByteArray(file);
-                Server.MapPath("");
             }
             return null;
         }
-              private static byte[] GetByteArray(HttpPostedFileBase file)
+
+
+
+
+
+
+
+
+        private static byte[] GetByteArray(HttpPostedFileBase file)
         {
             using (MemoryStream ms = new MemoryStream())
             {
