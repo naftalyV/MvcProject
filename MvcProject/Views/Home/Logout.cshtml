@@ -6,18 +6,19 @@
 {
     <input type="submit"value="Logout" />
 }
-    @using (Html.BeginForm("SubmitData", "Home", FormMethod.Post,
+    @*@using (Html.BeginForm("SubmitData", "Home", FormMethod.Post,
                                         new { enctype = "multipart/form-data" }))
     {
-
+       
         @Html.EditorFor(x => x.Title)
+        @Html.EditorFor(x => x.ShortDescription)
 
-        <div id="multiple">
-            <input type="file" class="multiple" name="files" multiple />
-        </div>
 
-        <input type="file" name="file1" />
-        <input type="file" name="file2" />
-        <input type="file" name="file3"/>
-        <input type="submit" value="Send to server" />
-    }
+         <input type="file" name="file1" />
+ 
+         <input type="file" name="file2" />
+ 
+         <input type="file" name="file3"/>
+ 
+         <input type="submit" value="Send to server" />
+    }*@

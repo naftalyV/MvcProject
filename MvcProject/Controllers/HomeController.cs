@@ -53,7 +53,7 @@ namespace MvcProject.Controllers
         public ActionResult SubmitData(Prodoct p)
         {
             HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
-            int length= wrapper.Count;
+            int length = wrapper.Count;
             for (int i = 0; i < length; i++)
             {
                 if (wrapper[i] != null && wrapper[i].ContentLength > 0 && wrapper[i].ContentType.StartsWith("image"))
@@ -64,7 +64,7 @@ namespace MvcProject.Controllers
                             p.picture1 = GetByteArray(wrapper[i]);
                             break;
                         case 1:
-                            p.picture2= GetByteArray(wrapper[i]);
+                            p.picture2 = GetByteArray(wrapper[i]);
                             break;
                         case 2:
                             p.picture3 = GetByteArray(wrapper[i]);
@@ -72,9 +72,18 @@ namespace MvcProject.Controllers
                         default:
                             break;
                     }
-                   
+
+                    using (var ctx = new BuyForUDB())
+                    {
+           
+                        ctx.Prodoct.Add(p);
+                        ctx.SaveChanges();
+                        ViewBag.Message = "File uploaded successfully";
+                    }
+
                 }
-            }
+               
+            }return View();
 
             //if (file != null && file.ContentLength > 0 && file.ContentType.StartsWith("image"))
             //{
@@ -85,18 +94,12 @@ namespace MvcProject.Controllers
             //file.SaveAs(path);
             //TODO:..
             //p.picture1 = GetByteArray(file);
-            p.Date = DateTime.Now;
-            p.Price = 9;
-            p.Title = "hi";
-            p.Id = 99;
+            //p.Date = DateTime.Now;
+            //  p.Price = 9;
+            //  p.Title = "hi";
+            //  p.Id = 99;
 
-            using (var ctx = new BuyForUDB())
-            {
-                ctx.Prodoct.Add(p);
-                ctx.SaveChanges();
-                ViewBag.Message = "File uploaded successfully";
-            }
-            return null;
+
         }
 
 

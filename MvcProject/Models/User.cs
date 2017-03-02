@@ -26,6 +26,6 @@ namespace MvcProject.Models
         [Required(ErrorMessage = "Please enter a password")]
         [StringLength(50)]
         public string Password { get; set; }
-
+        public virtual  ICollection <Prodoct> Prodoct { get; set; }
     }
 }

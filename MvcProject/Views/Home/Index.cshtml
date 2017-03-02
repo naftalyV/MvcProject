@@ -12,6 +12,7 @@ This is home page
 @if (User.Identity.IsAuthenticated)
 {
     @Html.Partial("Logout")
+    @Html.Partial("AddProduct")
 }
 else
 {
