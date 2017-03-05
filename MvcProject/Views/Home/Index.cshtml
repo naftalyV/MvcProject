@@ -16,17 +16,8 @@ This is home page
 }
 else
 {
-    @Html.Partial("Login")
-
+   
+    @Html.Partial("LoginUser")
 }
-<img style="width:200px;"
-     src='@Url.Action("DownloadImage","DisplayImage")' />
-@*@using (Html.BeginForm("FileUpload", "UploadImage", FormMethod.Post,
-                                                                new { enctype = "multipart/form-data" }))
-{
-    <label for="file">Upload Image:</label>
-    <input type="file" name="file" id="file" style="width: 100%;" />
-        <input type="submit" value="Upload" class="submit" />
-}*@
 
 

@@ -15,8 +15,6 @@ namespace MvcProject.Controllers
 
         public ActionResult Index()
         {
-            //using (var ctx = new BuyForUDB()) { var p = ctx.Prodoct.ToList(); }
-
             return View();
         }
 
@@ -34,9 +32,13 @@ namespace MvcProject.Controllers
                 if (userDtails != null)
                 {
                     FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
+                    return RedirectToAction("Index");
                 }
 
-                return RedirectToAction("Index");
+                else
+                {
+                    return View("Index");
+                }
             }
         }
 
@@ -75,15 +77,16 @@ namespace MvcProject.Controllers
 
                     using (var ctx = new BuyForUDB())
                     {
-           
+
                         ctx.Prodoct.Add(p);
                         ctx.SaveChanges();
                         ViewBag.Message = "File uploaded successfully";
                     }
 
                 }
-               
-            }return View();
+
+            }
+            return View();
 
             //if (file != null && file.ContentLength > 0 && file.ContentType.StartsWith("image"))
             //{
@@ -101,9 +104,27 @@ namespace MvcProject.Controllers
 
 
         }
+        public ActionResult NewUser()
+        {
+            return View("AddUser");
+        }
 
+        [HttpPost]
+        public ActionResult SubmitUser(User U)
+        {
+            if (U.UserName != null && U.Password != null)
+            {
+                using (var ctx = new BuyForUDB())
+                {
 
-
+                    ctx.Users.Add(U);
+                    ctx.SaveChanges();
+                    ViewBag.Message = "פרטי משתמש נקלטו בהצלחה";
+                    return RedirectToAction("Index");
+                }
+            }
+            return View("AddUser");
+        }
 
 
 
