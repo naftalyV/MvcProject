@@ -1,6 +1,7 @@
 ﻿using MvcProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -54,55 +55,50 @@ namespace MvcProject.Controllers
         [HttpPost]
         public ActionResult SubmitData(Prodoct p)
         {
-            HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
-            int length = wrapper.Count;
-            for (int i = 0; i < length; i++)
+            if (p.Title != string.Empty
+                && p.ShortDescription != string.Empty
+                && p.LongDescription != string.Empty
+                && p.Price > 0)
             {
-                if (wrapper[i] != null && wrapper[i].ContentLength > 0 && wrapper[i].ContentType.StartsWith("image"))
-                {
-                    switch (i)
-                    {
-                        case 0:
-                            p.picture1 = GetByteArray(wrapper[i]);
-                            break;
-                        case 1:
-                            p.picture2 = GetByteArray(wrapper[i]);
-                            break;
-                        case 2:
-                            p.picture3 = GetByteArray(wrapper[i]);
-                            break;
-                        default:
-                            break;
-                    }
 
-                    using (var ctx = new BuyForUDB())
+
+                HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
+                int length = wrapper.Count;
+                for (int i = 0; i < length; i++)
+                {
+                    if (wrapper[i] != null && wrapper[i].ContentLength > 0 && wrapper[i].ContentType.StartsWith("image"))
                     {
-                        p.Date = DateTime.Now;
-                        ctx.Prodoct.Add(p);
-                        ctx.SaveChanges();
-                        ViewBag.Message = "File uploaded successfully";
+                        switch (i)
+                        {
+                            case 0:
+                                p.picture1 = GetByteArray(wrapper[i]);
+                                break;
+                            case 1:
+                                p.picture2 = GetByteArray(wrapper[i]);
+                                break;
+                            case 2:
+                                p.picture3 = GetByteArray(wrapper[i]);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        using (var ctx = new BuyForUDB())
+                        {
+                            FormsAuthentication.CookiesSupported.ToString();
+                            p.Date = DateTime.Now;
+                            ctx.Prodoct.Add(p);
+                            ctx.SaveChanges();
+                            ViewBag.Message = "File uploaded successfully";
+                        }
+
                     }
 
                 }
-
-            }
-            return View();
-
-            //if (file != null && file.ContentLength > 0 && file.ContentType.StartsWith("image"))
-            //{
-            // extract only the fielname
-            //var fileName = Path.GetFileName(file.FileName);
-            // store the file inside ~/Images folder
-            //var path = Path.Combine(Server.MapPath("~/Images"), fileName);
-            //file.SaveAs(path);
-            //TODO:..
-            //p.picture1 = GetByteArray(file);
-            //p.Date = DateTime.Now;
-            //  p.Price = 9;
-            //  p.Title = "hi";
-            //  p.Id = 99;
+                return RedirectToAction("Index");
 
 
+            }return View("AddProduct");
         }
         public ActionResult NewUser()
         {
@@ -148,5 +144,24 @@ namespace MvcProject.Controllers
 
             file.SaveAs(path);
         }
+        //[HttpPost]
+        //public ActionResult Show(int id)
+        //{
+        //    //using (var ctx = new BuyForUDB())
+        //    //{
+
+        //    //    var imageData = ctx.Prodoct.Where(p => p.Id == id).FirstOrDefault();
+        //    //    using (MemoryStream ms = new MemoryStream())
+        //    //    {
+        //    //       imageData.picture1.(ms);
+        //    //        byte[] array = ms.GetBuffer();
+        //    //        return array;
+        //    //    }
+        //    //    return File(imageData, "image/jpg");
+        //    //}
+        //}
+       
     }
 }
+                
+
