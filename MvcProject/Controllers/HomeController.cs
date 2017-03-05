@@ -77,7 +77,7 @@ namespace MvcProject.Controllers
 
                     using (var ctx = new BuyForUDB())
                     {
-
+                        p.Date = DateTime.Now;
                         ctx.Prodoct.Add(p);
                         ctx.SaveChanges();
                         ViewBag.Message = "File uploaded successfully";
