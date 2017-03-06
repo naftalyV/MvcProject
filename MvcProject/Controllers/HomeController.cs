@@ -55,10 +55,11 @@ namespace MvcProject.Controllers
         [HttpPost]
         public ActionResult SubmitData(Prodoct p)
         {
-            if (p.Title != string.Empty
-                && p.ShortDescription != string.Empty
-                && p.LongDescription != string.Empty
-                && p.Price > 0)
+            if (ModelState.IsValid)
+                //p.Title != string.Empty
+                //&& p.ShortDescription != string.Empty
+                //&& p.LongDescription != string.Empty
+                //&& p.Price > 0)
             {
 
 
@@ -85,7 +86,7 @@ namespace MvcProject.Controllers
 
                         using (var ctx = new BuyForUDB())
                         {
-                            FormsAuthentication.CookiesSupported.ToString();
+                          
                             p.Date = DateTime.Now;
                             ctx.Prodoct.Add(p);
                             ctx.SaveChanges();
@@ -145,22 +146,17 @@ namespace MvcProject.Controllers
             file.SaveAs(path);
         }
         //[HttpPost]
-        //public ActionResult Show(int id)
-        //{
-        //    //using (var ctx = new BuyForUDB())
-        //    //{
+        public ActionResult Show(int id)
+        {
+            using (var ctx = new BuyForUDB())
+            {
 
-        //    //    var imageData = ctx.Prodoct.Where(p => p.Id == id).FirstOrDefault();
-        //    //    using (MemoryStream ms = new MemoryStream())
-        //    //    {
-        //    //       imageData.picture1.(ms);
-        //    //        byte[] array = ms.GetBuffer();
-        //    //        return array;
-        //    //    }
-        //    //    return File(imageData, "image/jpg");
-        //    //}
-        //}
-       
+                var imageData = ctx.Prodoct.Where(p => p.Id == id).FirstOrDefault();
+              
+                return File(imageData.picture1, "image/jpg");
+            }
+        }
+
     }
 }
                 
