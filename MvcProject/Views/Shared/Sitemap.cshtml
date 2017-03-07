@@ -1,1 +1,22 @@
 ﻿
+<div>
+    @Html.ActionLink("מסך ראשי", "Index")
+</div>
+<div>
+    @Html.ActionLink("רישום פרטים אישים", "AddUser")
+</div><div>
+    @Html.ActionLink("אודותינו", "Index")
+</div>
+<div>
+    @Html.ActionLink("סל קניות", "Index")
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated)
+            {
+       
+        @Html.ActionLink("פרסום מודעה", "SubmitData")
+
+    }
+   
+    </div>
+  

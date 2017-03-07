@@ -9,11 +9,11 @@ namespace MvcProject.Models
 {
     public enum State
     {
+        ForSale,
         ShoppingCart,
-            Sold,
-        ForSale
+            Sold
     }
-    public class Prodoct
+    public class Product
     {
         [Key]
         public int Id { get; set; }
@@ -34,7 +34,8 @@ namespace MvcProject.Models
         [Required(ErrorMessage = "Please enter a Long Description")]
         [StringLength(4000)]
         public string LongDescription { get; set; }
-       [Required]
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         [Required]
         public decimal Price { get; set; }

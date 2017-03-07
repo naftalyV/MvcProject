@@ -15,7 +15,7 @@ namespace MvcProject.Models
         [Required(ErrorMessage = "Please enter a last name")]
         [StringLength(50)]
         public string LastNama { get; set; }
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = "Please enter a email")]
         [EmailAddress]
@@ -25,7 +25,8 @@ namespace MvcProject.Models
         public string UserName { get; set; }
         [Required(ErrorMessage = "Please enter a password")]
         [StringLength(50)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-        public virtual  ICollection <Prodoct> Prodoct { get; set; }
+        public virtual  ICollection <Product> Prodoct { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace MvcProject
                 Password = "123"
             };
             context.Users.Add(u1);
-            var p = new Prodoct()
+            var p = new Product()
             {
                 Id = 1,
                 picture1 = null

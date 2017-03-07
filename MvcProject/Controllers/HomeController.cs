@@ -53,7 +53,7 @@ namespace MvcProject.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult SubmitData(Prodoct p)
+        public ActionResult SubmitData(Product p)
         {
             if (ModelState.IsValid)
                 //p.Title != string.Empty
@@ -153,11 +153,4 @@ namespace MvcProject.Controllers
 }
                 
 
-        //private void SaveInFileSystem(HttpPostedFileBase file)
-        //{
-        //    string pic = System.IO.Path.GetFileName(file.FileName);
-        //    string path = System.IO.Path.Combine(
-        //                           Server.MapPath("~/images/"), pic);
-
-        //    file.SaveAs(path);
-        //}
+      
