@@ -23,18 +23,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Buy for u", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+    <div class="panel-default col-md-3">
+        <div class="panel-heading" style="margin-left: 0px ;height:650px; ">
+            <div>
+                @if (User.Identity.IsAuthenticated)
+            {
+                    @Html.Partial("Logout")
+
+                }
+                else
+                {
+
+                    @Html.Partial("LoginUser")
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="container body-content">
+            @RenderBody()
+
+            <hr />
+        </div>
         <footer>
             @*<p>&copy; @DateTime.Now.Year - My Naftaly Application</p>*@
         </footer>

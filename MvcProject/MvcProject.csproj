@@ -166,11 +166,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Logout.cshtml" />
+    <Content Include="Views\Shared\Logout.cshtml" />
     <Content Include="Views\Home\AddProduct.cshtml" />
     <Content Include="Views\Home\AddUser.cshtml" />
-    <Content Include="Views\Home\LoginUser.cshtml" />
+    <Content Include="Views\Shared\LoginUser.cshtml" />
     <Content Include="Views\Home\Show.cshtml" />
+    <Content Include="Views\Shared\Sitemap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

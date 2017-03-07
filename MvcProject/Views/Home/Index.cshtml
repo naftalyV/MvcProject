@@ -5,22 +5,3 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Buy For U</h2>
-This is home page
-
-<div>
-    @Html.ActionLink("חזור לראש העמוד", "Show")
-</div>
-
-@if (User.Identity.IsAuthenticated)
-{
-    @Html.Partial("Logout")
-    @Html.Partial("AddProduct")
-}
-else
-{
-   
-    @Html.Partial("LoginUser")
-}
-
-

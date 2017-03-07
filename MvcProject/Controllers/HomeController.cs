@@ -137,14 +137,6 @@ namespace MvcProject.Controllers
             }
         }
 
-        private void SaveInFileSystem(HttpPostedFileBase file)
-        {
-            string pic = System.IO.Path.GetFileName(file.FileName);
-            string path = System.IO.Path.Combine(
-                                   Server.MapPath("~/images/"), pic);
-
-            file.SaveAs(path);
-        }
         //[HttpPost]
         public ActionResult Show(int id)
         {
@@ -161,3 +153,11 @@ namespace MvcProject.Controllers
 }
                 
 
+        //private void SaveInFileSystem(HttpPostedFileBase file)
+        //{
+        //    string pic = System.IO.Path.GetFileName(file.FileName);
+        //    string path = System.IO.Path.Combine(
+        //                           Server.MapPath("~/images/"), pic);
+
+        //    file.SaveAs(path);
+        //}
