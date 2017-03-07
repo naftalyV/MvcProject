@@ -13,7 +13,12 @@ namespace MvcProject.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            var lst = new List<Product>();
+            using (var ctx = new BuyForUDB())
+            {
+                lst = ctx.Prodoct.Where(p => p.Price < 100000).ToList();
+                return View(lst);
+            }
         }
         public ActionResult Login(User user)
         {
@@ -37,8 +42,8 @@ namespace MvcProject.Controllers
                     return View("Index");
                 }
             }
-    }
-              [Authorize]
+        }
+        [Authorize]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

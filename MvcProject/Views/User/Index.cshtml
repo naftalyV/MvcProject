@@ -1,0 +1,26 @@
+﻿@model List<MvcProject.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    <table>
+        1321321321321321
+        @{
+            var itemInRow = 4;
+            var numOfItems = Model.Count();
+            for (int i = 0, p = 0; i < numOfItems / itemInRow; i++)
+            {
+                <tr>
+                    @for (int j = 0; j < itemInRow && p < numOfItems; p++, j++)
+                    {
+                        <td>
+                            @Html.Partial("ShowInHomePage", Model[p]);
+                        </td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+}

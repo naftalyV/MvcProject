@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MvcProject.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,19 +11,21 @@ namespace MvcProject.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult SubmitData()
         {
-            return View();
+            return View("AddProduct");
         }
+
         [Authorize]
         [HttpPost]
         public ActionResult SubmitData(Product p)
         {
-            if (ModelState.IsValid)
-            //p.Title != string.Empty
-            //&& p.ShortDescription != string.Empty
-            //&& p.LongDescription != string.Empty
-            //&& p.Price > 0)
+            if// (ModelState.IsValid)
+               ( p.Title != string.Empty
+                && p.ShortDescription != string.Empty
+                && p.LongDescription != string.Empty
+                && p.Price > 0)
             {
 
 
@@ -58,11 +62,32 @@ namespace MvcProject.Controllers
                     }
 
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","User");
 
 
             }
             return View("AddProduct");
         }
+        private static byte[] GetByteArray(HttpPostedFileBase file)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                file.InputStream.CopyTo(ms);
+                byte[] array = ms.GetBuffer();
+                return array;
+            }
+        }
+
+        //[HttpPost]
+        //public ActionResult ShowInHomePage(int id)
+        //{
+        //    using (var ctx = new BuyForUDB())
+        //    {
+
+        //        var imageData = ctx.Prodoct.Where(p => p.Id == id).FirstOrDefault();
+
+        //        return File(imageData.picture1, "image/jpg");
+        //    }
+        //}
     }
 }
