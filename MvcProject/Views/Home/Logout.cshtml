@@ -1,0 +1,22 @@
+﻿@model MvcProject.Models.Prodoct
+<h4>
+    Hello @User.Identity.Name
+</h4>
+@using (Html.BeginForm("Logout", "Home"))
+{
+    <input type="submit"value="Logout" />
+}
+    @*@using (Html.BeginForm("SubmitData", "Home", FormMethod.Post,
+                                        new { enctype = "multipart/form-data" }))
+    {
+       
+     
+
+         <input type="file" name="file1" />
+ 
+         <input type="file" name="file2" />
+ 
+         <input type="file" name="file3"/>
+ 
+         <input type="submit" value="Send to server" />
+    }*@

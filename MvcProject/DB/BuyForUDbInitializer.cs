@@ -38,12 +38,12 @@ namespace MvcProject
                 picture1 = null
 
             };
-            var p = new Product()
+            var p1 = new Product()
             {
                 Id = 1,
                 picture1 = null
 
-            }; var p = new Product()
+            }; var p2 = new Product()
             {
                 Id = 1,
                 picture1 = null

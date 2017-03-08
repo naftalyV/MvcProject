@@ -11,7 +11,8 @@ namespace MvcProject
         public BuyForUDB()
             : base("name=BuyForUDB")
         {
-            Database.SetInitializer(new BuyForUDbInitializer());
+            Database.CreateIfNotExists();
+
         }
 
 

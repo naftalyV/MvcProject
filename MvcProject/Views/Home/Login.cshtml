@@ -1,0 +1,18 @@
+﻿@model MvcProject.Models.User
+@using (Html.BeginForm("Login","Home"))
+{
+    if (!User.Identity.IsAuthenticated)
+    {
+        @Html.DisplayNameFor(u=>u.UserName)
+        @Html.TextBoxFor(u=>u.UserName)
+        @Html.ValidationMessageFor(u=>u.UserName)
+        <br />
+        @Html.DisplayNameFor(u=>u.Password)
+        @Html.TextBoxFor(u=>u.Password)
+        @Html.ValidationMessageFor(u=>u.Password)
+
+        <input type="submit" value="Login" />
+
+    }
+
+}

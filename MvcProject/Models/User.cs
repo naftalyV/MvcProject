@@ -8,6 +8,7 @@ namespace MvcProject.Models
 {
     public class User
     {
+        [Key]
         public int id { get; set; }
         [Required(ErrorMessage ="Please enter a first name")]
         [StringLength(50)]
@@ -27,6 +28,6 @@ namespace MvcProject.Models
         [StringLength(50)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public virtual  ICollection <Product> Prodoct { get; set; }
+        public virtual ICollection<Product> Prodoct { get; set; }
     }
 }

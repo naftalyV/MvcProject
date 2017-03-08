@@ -1,5 +1,5 @@
 ﻿@model MvcProject.Models.Product
-@*@{
+@{
     ViewBag.Title = "ShowInHomePage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,9 +7,9 @@
 <h2>ShowInHomePage</h2>
 
 <div style="width:200px">
-    <img style="width:200px;" src='@Url.Action("DownloadImage", "Home", new { id = Model.Id })' />
-    <br />*@
-
+    <img style="width:200px;" src='@Url.Action("ShowInHomePage", "Product", new { id = Model.Id })' />
+    <br />
+    </div>
     @Model.Title
     <br />
     @Model.ShortDescription

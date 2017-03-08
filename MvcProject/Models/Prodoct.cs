@@ -9,27 +9,22 @@ namespace MvcProject.Models
 {
     public enum State
     {
-        ForSale,
         ShoppingCart,
-            Sold
+            Sold,
+        ForSale
     }
-    public class Product
+    public class Prodoct
     {
         [Key]
         public int Id { get; set; }
-        //[InverseProperty("Owner ")]
-        // [ForeignKey("Owner")]
-        //  [Column(Order = 1)]
-        [ForeignKey("User")]
-        public int? UserId { get; set; }
-        //public User User { get; set; }
-        [ForeignKey("Owner")]
+        [InverseProperty("Owner ")]
+       // [ForeignKey("Owner")]
+      //  [Column(Order = 1)]
         public int? OwnerId { get; set; }
-        //public User Owner { get; set; }
-        ////  [ForeignKey("User")]
-        // // [Column(Order = 2)]
-        // [InverseProperty(" User")]
-        //  public int? UserId { get; set; }
+      //  [ForeignKey("User")]
+       // [Column(Order = 2)]
+       [InverseProperty(" User")]
+        public int? UserId { get; set; }
         [Required(ErrorMessage = "Please enter a Title")]
         [StringLength(50)]
         public string Title { get; set; }
@@ -39,8 +34,7 @@ namespace MvcProject.Models
         [Required(ErrorMessage = "Please enter a Long Description")]
         [StringLength(4000)]
         public string LongDescription { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
+       [Required]
         public DateTime Date { get; set; }
         [Required]
         public decimal Price { get; set; }
