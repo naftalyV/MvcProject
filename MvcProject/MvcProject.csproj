@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DB\BuyForUDB.cs" />
@@ -173,6 +174,8 @@
     <Content Include="Views\Shared\Sitemap.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\ShowInHomePage.cshtml" />
+    <Content Include="Views\Shared\HomePage.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -194,7 +197,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>40284</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

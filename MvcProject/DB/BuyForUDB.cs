@@ -12,12 +12,12 @@ namespace MvcProject
             : base("name=BuyForUDB")
         {
             Database.CreateIfNotExists();
-
+          //  Database.SetInitializer(new BuyForUDbInitializer());
         }
 
 
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Product> Prodoct { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 
 

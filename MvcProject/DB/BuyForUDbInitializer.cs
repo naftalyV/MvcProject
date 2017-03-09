@@ -32,23 +32,7 @@ namespace MvcProject
             };
             context.Users.Add(u1);
 
-            var p = new Product()
-            {
-                Id = 1,
-                picture1 = null
-
-            };
-            var p1 = new Product()
-            {
-                Id = 1,
-                picture1 = null
-
-            }; var p2 = new Product()
-            {
-                Id = 1,
-                picture1 = null
-
-            };
+           
         }
     }
 }

@@ -17,19 +17,10 @@ namespace MvcProject.Models
     {
         [Key]
         public int Id { get; set; }
-        //[InverseProperty("Owner ")]
-        // [ForeignKey("Owner")]
-        //  [Column(Order = 1)]
         [ForeignKey("User")]
         public int? UserId { get; set; }
-        //public User User { get; set; }
         [ForeignKey("Owner")]
         public int? OwnerId { get; set; }
-        //public User Owner { get; set; }
-        ////  [ForeignKey("User")]
-        // // [Column(Order = 2)]
-        // [InverseProperty(" User")]
-        //  public int? UserId { get; set; }
         [Required(ErrorMessage = "Please enter a Title")]
         [StringLength(50)]
         public string Title { get; set; }
@@ -44,6 +35,7 @@ namespace MvcProject.Models
         public DateTime Date { get; set; }
         [Required]
         public decimal Price { get; set; }
+        [Required]
         public byte[] picture1 { get; set; }
         public byte[] picture2 { get; set; }
         public byte[] picture3 { get; set; }
@@ -53,3 +45,12 @@ namespace MvcProject.Models
         public virtual User Owner { get; set; }
     }
 }
+        //[InverseProperty("Owner ")]
+        // [ForeignKey("Owner")]
+        //  [Column(Order = 1)]
+        //public User Owner { get; set; }
+        ////  [ForeignKey("User")]
+        //public User User { get; set; }
+        // // [Column(Order = 2)]
+        // [InverseProperty(" User")]
+        //  public int? UserId { get; set; }

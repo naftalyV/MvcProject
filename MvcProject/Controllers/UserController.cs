@@ -10,16 +10,15 @@ namespace MvcProject.Controllers
 {
     public class UserController : Controller
     {
-        public static User LoggedUser = null;
-
+        
         // GET: User
         public ActionResult Index()
         {
             var lst = new List<Product>();
             using (var ctx = new BuyForUDB())
             {
-                //lst = ctx.Prodoct.Where(p => p.Price < 100000).ToList();
-                //return View(lst);
+                lst = ctx.Product.Where(p => p.picture1!=null).ToList();
+             
                 return View(lst);
             }
         }
@@ -37,7 +36,7 @@ namespace MvcProject.Controllers
                 if (userDtails != null)
                 {
                     FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
-                    LoggedUser = user;
+                   
                     return RedirectToAction("Index");
                 }
 

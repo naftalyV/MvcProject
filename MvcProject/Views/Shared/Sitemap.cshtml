@@ -1,22 +1,21 @@
 ﻿
 <div>
-    @Html.ActionLink("מסך ראשי", "Index","User")
+    @Html.ActionLink("מסך ראשי", "HomePage", "Home")
 </div>
 <div>
     @Html.ActionLink("רישום פרטים אישים", "NewUser", "User")
 </div><div>
-    @Html.ActionLink("אודותינו", "Index","User")
+    @Html.ActionLink("אודותינו", "About", "Home")
 </div>
 <div>
-    @Html.ActionLink("סל קניות", "Index","User")
+    @Html.ActionLink("סל קניות", "Index", "User")
 </div>
 <div>
     @if (User.Identity.IsAuthenticated)
-            {
-       
-        @Html.ActionLink("פרסום מודעה", "SubmitData","Product")
+    {
+
+        @Html.ActionLink("פרסום מודעה", "SubmitData", "Product")
 
     }
-   
-    </div>
-  
+
+</div>

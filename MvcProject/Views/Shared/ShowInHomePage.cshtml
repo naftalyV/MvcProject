@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ShowInHomePage</h2>
+<h2>דף הבית</h2>
 
 <div style="width:200px">
-    <img style="width:200px;" src='@Url.Action("ShowInHomePage", "Product", new { id = Model.Id })' />
+    <img style="width:200px"  src='@Url.Action("ShowInHomePage", "Product", new { id = Model.Id })' />
     <br />
     </div>
     @Model.Title

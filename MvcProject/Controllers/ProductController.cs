@@ -21,25 +21,26 @@ namespace MvcProject.Controllers
         [HttpPost]
         public ActionResult SubmitData(Product p)
         {
+                
+            
+                HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
+                int length = wrapper.Count;
+
+                p.picture1 = GetByteArray(wrapper[0]);
+                p.picture2 = GetByteArray(wrapper[1]);
+                p.picture3 = GetByteArray(wrapper[2]);
             if// (ModelState.IsValid)
                (p.Title != string.Empty
                 && p.ShortDescription != string.Empty
                 && p.LongDescription != string.Empty
-                && p.Price > 0)
-            {
-                HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
-                int length = wrapper.Count;
-                
-                p.OwnerId = UserController.LoggedUser.id;
-                p.picture1 = GetByteArray(wrapper[0]);
-                p.picture2 = GetByteArray(wrapper[1]);
-                p.picture3 = GetByteArray(wrapper[2]);
-
+                && p.Price > 0
+               && p.picture1!=null)
+            { 
                 using (var ctx = new BuyForUDB())
                 {
 
                     p.Date = DateTime.Now;
-                    ctx.Prodoct.Add(p);
+                    ctx.Product.Add(p);
                     ctx.SaveChanges();
                     ViewBag.Message = "File uploaded successfully";
                 }
@@ -70,7 +71,7 @@ namespace MvcProject.Controllers
             using (var ctx = new BuyForUDB())
             {
 
-                var imageData = ctx.Prodoct.Where(p => p.Id == id).FirstOrDefault();
+                var imageData = ctx.Product.Where(p => p.Id == id && p.picture1!=null).FirstOrDefault();
 
                 return File(imageData.picture1, "image/jpg");
             }
