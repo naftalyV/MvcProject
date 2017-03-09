@@ -7,11 +7,13 @@
 <h2>דף הבית</h2>
 
 <div style="width:200px">
-    <img style="width:200px"  src='@Url.Action("ShowInHomePage", "Product", new { id = Model.Id })' />
+</div>
+@Model.Title
+<br />
+    <img style="width:200px"
+           src='@Url.Action("ShowInHomePage", "Home", new { id = Model.Id })' />
     <br />
-    </div>
-    @Model.Title
-    <br />
+   
     @Model.ShortDescription
     <br />
     @Model.Price $

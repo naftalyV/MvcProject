@@ -9,7 +9,7 @@ namespace MvcProject.Models
     public class User
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage ="Please enter a first name")]
         [StringLength(50)]
         public string FirstName { get; set; }

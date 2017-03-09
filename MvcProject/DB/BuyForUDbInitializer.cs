@@ -22,7 +22,7 @@ namespace MvcProject
             //};
             var u1 = new User()
             {
-                id = 1,
+                Id = 1,
                 FirstName = "naftaly",
                 LastNama = "waisenshtern",
                 BirthDate = DateTime.Now.AddYears(-32),

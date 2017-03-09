@@ -29,23 +29,27 @@ namespace MvcProject.Controllers
                 p.picture1 = GetByteArray(wrapper[0]);
                 p.picture2 = GetByteArray(wrapper[1]);
                 p.picture3 = GetByteArray(wrapper[2]);
-            if// (ModelState.IsValid)
-               (p.Title != string.Empty
-                && p.ShortDescription != string.Empty
-                && p.LongDescription != string.Empty
-                && p.Price > 0
-               && p.picture1!=null)
+            //if// (ModelState.IsValid)
+            //   (p.Title != string.Empty
+            //    && p.ShortDescription != string.Empty
+            //    && p.LongDescription != string.Empty
+            //    && p.Price > 0
+            //   && p.picture1!=null)
             { 
-                using (var ctx = new BuyForUDB())
+                using ( var ctx = new BuyForUDB())
                 {
-
-                    p.Date = DateTime.Now;
+                    User user = ctx.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+                    if (user != null)
+                    {
+                        p.Owner = ctx.Users.Where(u => u.Id == user.Id).FirstOrDefault();
+                        ctx.Users.Attach(p.Owner);
+                        p.Date = DateTime.Now;
                     ctx.Product.Add(p);
                     ctx.SaveChanges();
                     ViewBag.Message = "File uploaded successfully";
                 }
 
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("HomePage", "Home");
 
 
             }
@@ -66,15 +70,15 @@ namespace MvcProject.Controllers
         }
 
         //[HttpPost]
-        public ActionResult ShowInHomePage(int id)
-        {
-            using (var ctx = new BuyForUDB())
-            {
+        //public ActionResult ShowInHomePage(int id)
+        //{
+        //    using (var ctx = new BuyForUDB())
+        //    {
 
-                var imageData = ctx.Product.Where(p => p.Id == id && p.picture1!=null).FirstOrDefault();
+        //        var imageData = ctx.Product.Where(p => p.Id == id && p.picture1!=null).FirstOrDefault();
 
-                return File(imageData.picture1, "image/jpg");
-            }
-        }
+        //        return File(imageData.picture1, "image/jpg");
+        //    }
+        //}
     }
 }

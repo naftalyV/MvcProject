@@ -12,16 +12,7 @@ namespace MvcProject.Controllers
     {
         
         // GET: User
-        public ActionResult Index()
-        {
-            var lst = new List<Product>();
-            using (var ctx = new BuyForUDB())
-            {
-                lst = ctx.Product.Where(p => p.picture1!=null).ToList();
-             
-                return View(lst);
-            }
-        }
+
         public ActionResult Login(User user)
         {
 
@@ -37,12 +28,12 @@ namespace MvcProject.Controllers
                 {
                     FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
                    
-                    return RedirectToAction("Index");
+                    return RedirectToAction("HomePage","Home");
                 }
 
                 else
                 {
-                    return View("Index");
+                    return View("HomePage");
                 }
             }
         }
@@ -50,7 +41,7 @@ namespace MvcProject.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            return RedirectToAction("HomePage", "Home");
 
         }
         public ActionResult NewUser()
@@ -69,7 +60,7 @@ namespace MvcProject.Controllers
                     ctx.Users.Add(U);
                     ctx.SaveChanges();
                     ViewBag.Message = "פרטי משתמש נקלטו בהצלחה";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("HomePage", "Home");
                 }
             }
             return View("AddUser");

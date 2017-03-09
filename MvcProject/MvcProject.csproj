@@ -147,7 +147,6 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DB\BuyForUDB.cs" />
     <Compile Include="DB\BuyForUDbInitializer.cs" />
-    <Compile Include="DB\Repository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
