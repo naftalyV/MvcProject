@@ -29,21 +29,23 @@ namespace MvcProject.Controllers
                 p.picture1 = GetByteArray(wrapper[0]);
                 p.picture2 = GetByteArray(wrapper[1]);
                 p.picture3 = GetByteArray(wrapper[2]);
-            //if// (ModelState.IsValid)
-            //   (p.Title != string.Empty
-            //    && p.ShortDescription != string.Empty
-            //    && p.LongDescription != string.Empty
-            //    && p.Price > 0
-            //   && p.picture1!=null)
-            { 
+            if// (ModelState.IsValid)
+               (p.Title != string.Empty
+                && p.ShortDescription != string.Empty
+                && p.LongDescription != string.Empty
+                && p.Price > 0
+               && p.picture1 != null)
+            {
                 using ( var ctx = new BuyForUDB())
                 {
-                    User user = ctx.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
-                    if (user != null)
-                    {
-                        p.Owner = ctx.Users.Where(u => u.Id == user.Id).FirstOrDefault();
-                        ctx.Users.Attach(p.Owner);
-                        p.Date = DateTime.Now;
+                    //User user = ctx.Users.Where(u => u.FirstName.Contains(User.Identity.Name.ToString());
+                    //if (user != null)
+                    //{
+                    //    p.Owner = ctx.Users.Where(u => u.Id == user.Id).FirstOrDefault();
+                    //    ctx.Users.Attach(p.Owner);
+                    //    //p.State = State.avaliable;
+                    //}
+                    p.Date = DateTime.Now;
                     ctx.Product.Add(p);
                     ctx.SaveChanges();
                     ViewBag.Message = "File uploaded successfully";

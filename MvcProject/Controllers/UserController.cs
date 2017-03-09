@@ -50,20 +50,33 @@ namespace MvcProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitUser(User U)
+        public ActionResult SubmitUser(User u)
         {
-            if (U.UserName != null && U.Password != null)
+            if (u.UserName != null && u.Password != null)
             {
                 using (var ctx = new BuyForUDB())
                 {
+                    if (!User.Identity.IsAuthenticated)
+                    {
+                        var eu = ctx.Users.Where(User => User.UserName == u.UserName).FirstOrDefault();
+                        if (eu==null)
+                        {
+                            ctx.Users.Add(u);
+                            ctx.SaveChanges();
+                            ViewBag.Message = "פרטי משתמש נקלטו בהצלחה";
+                            return RedirectToAction("HomePage", "Home");
+                        }
+                        else
+                        {
+                            ViewBag.massege = "שם משתמש כבר קיים";
+                            return View("AddUser");
 
-                    ctx.Users.Add(U);
-                    ctx.SaveChanges();
-                    ViewBag.Message = "פרטי משתמש נקלטו בהצלחה";
-                    return RedirectToAction("HomePage", "Home");
+                        }
+                    }
                 }
             }
             return View("AddUser");
+
         }
     }
 }
