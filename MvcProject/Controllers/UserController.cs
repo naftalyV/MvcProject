@@ -12,7 +12,7 @@ namespace MvcProject.Controllers
     {
         
         // GET: User
-
+        [HttpPost]
         public ActionResult Login(User user)
         {
 
@@ -25,15 +25,19 @@ namespace MvcProject.Controllers
                     .FirstOrDefault();
 
                 if (userDtails != null)
+               
                 {
-                    FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
-                   
+                    //FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
+                    FormsAuthentication.SetAuthCookie($"{userDtails.UserName}", true);
+
+
                     return RedirectToAction("HomePage","Home");
                 }
 
                 else
                 {
-                    return View("HomePage");
+                     return RedirectToAction("HomePage", "Home");
+                   // return View("ShowInHomePage");
                 }
             }
         }

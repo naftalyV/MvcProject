@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,7 +11,7 @@ namespace MvcProject.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage ="Please enter a first name")]
+        [Required(ErrorMessage = "Please enter a first name")]
         [StringLength(50)]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Please enter a last name")]
@@ -28,6 +29,10 @@ namespace MvcProject.Models
         [StringLength(50)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public virtual ICollection<Product> Prodoct { get; set; }
+        [InverseProperty("User")]
+        public virtual ICollection<Product> Products { get; set; }
+
+        [InverseProperty("Owner")]
+        public virtual ICollection<Product> ProductsToSell { get; set; }
     }
 }

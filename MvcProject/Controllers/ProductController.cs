@@ -38,13 +38,12 @@ namespace MvcProject.Controllers
             {
                 using ( var ctx = new BuyForUDB())
                 {
-                    //User user = ctx.Users.Where(u => u.FirstName.Contains(User.Identity.Name.ToString());
-                    //if (user != null)
-                    //{
-                    //    p.Owner = ctx.Users.Where(u => u.Id == user.Id).FirstOrDefault();
-                    //    ctx.Users.Attach(p.Owner);
-                    //    //p.State = State.avaliable;
-                    //}
+                    User user = ctx.Users.FirstOrDefault(u => u.UserName==User.Identity.Name);
+                    if (user != null)
+                    {
+                        p.Owner = ctx.Users.Where(u => u.Id == user.Id).FirstOrDefault();
+                        ctx.Users.Attach(p.Owner);
+                    }
                     p.Date = DateTime.Now;
                     ctx.Product.Add(p);
                     ctx.SaveChanges();
