@@ -2,9 +2,22 @@
 <div>
     @Html.ActionLink("מסך ראשי", "HomePage", "Home")
 </div>
+@if (!User.Identity.IsAuthenticated)
+{
 <div>
     @Html.ActionLink("רישום פרטים אישים", "NewUser", "User")
-</div><div>
+</div>
+
+}
+else
+{
+    <div>
+        @Html.ActionLink("רישום פרטים אישים", "EditUser", "User")
+    </div>
+
+}
+
+<div>
     @Html.ActionLink("אודותינו", "About", "Home")
 </div>
 <div>

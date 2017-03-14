@@ -50,13 +50,13 @@ namespace MvcProject.Controllers
         }
         public ActionResult NewUser()
         {
-            return View("AddUser");
+            return View("NewUser");
         }
 
         [HttpPost]
         public ActionResult SubmitUser(User u)
         {
-            if (u.UserName != null && u.Password != null)
+            if  (ModelState.IsValid)
             {
                 using (var ctx = new BuyForUDB())
                 {
@@ -73,14 +73,20 @@ namespace MvcProject.Controllers
                         else
                         {
                             ViewBag.massege = "שם משתמש כבר קיים";
-                            return View("AddUser");
+                            return View("NewUser");
 
                         }
                     }
                 }
             }
-            return View("AddUser");
+            return View("NewUser");
 
+        }
+        public ActionResult EditUser()
+        {
+            ViewBag.data = User.Identity.Name;
+         
+            return View();
         }
     }
 }

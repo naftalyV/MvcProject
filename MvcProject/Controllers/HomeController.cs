@@ -58,9 +58,9 @@ namespace MvcProject.Controllers
           
             using (var ctx = new BuyForUDB())
             {
-              var  list = ctx.Product.Where(p => p.Id == id).FirstOrDefault();
+              var Dedails = ctx.Product.Where(p => p.Id == id).FirstOrDefault();
 
-                return View(list);
+                return View(Dedails);
             }
         }
         public ActionResult ShowPicture2(int id)
