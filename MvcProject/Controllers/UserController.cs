@@ -48,15 +48,15 @@ namespace MvcProject.Controllers
             return RedirectToAction("HomePage", "Home");
 
         }
-        public ActionResult NewUser()
-        {
-            return View("NewUser");
-        }
+        //public ActionResult NewUser()
+        //{
+        //    return View("NewUser");
+        //}
 
         [HttpPost]
-        public ActionResult SubmitUser(User u)
+        public ActionResult EditUser(User u)
         {
-            if  (ModelState.IsValid)
+            //if  //(ModelState.IsValid)
             {
                 using (var ctx = new BuyForUDB())
                 {
@@ -73,20 +73,32 @@ namespace MvcProject.Controllers
                         else
                         {
                             ViewBag.massege = "שם משתמש כבר קיים";
-                            return View("NewUser");
+                            return View("EditUser");
 
                         }
                     }
                 }
             }
-            return View("NewUser");
+            return View("");
 
         }
         public ActionResult EditUser()
         {
-            ViewBag.data = User.Identity.Name;
+            using (var ctx = new BuyForUDB())
+            {
+                var user = ctx.Users.SingleOrDefault(u => u.UserName == User.Identity.Name);
+                if (user!=null)
+                {
+            return View("EditUser", user);
+
+                }
+                else
+                {
+                    return View();
+                }
+            }
+               
          
-            return View();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace MvcProject.Controllers
                 && p.ShortDescription != string.Empty
                 && p.LongDescription != string.Empty
                 && p.Price >= 0
-               && p.picture2 != null)
+               && p.picture1 != null)
             {
                 using ( var ctx = new BuyForUDB())
                 {

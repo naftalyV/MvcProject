@@ -2,26 +2,16 @@
 <div>
     @Html.ActionLink("מסך ראשי", "HomePage", "Home")
 </div>
-@if (!User.Identity.IsAuthenticated)
-{
-<div>
-    @Html.ActionLink("רישום פרטים אישים", "NewUser", "User")
-</div>
 
-}
-else
-{
     <div>
         @Html.ActionLink("רישום פרטים אישים", "EditUser", "User")
     </div>
-
-}
 
 <div>
     @Html.ActionLink("אודותינו", "About", "Home")
 </div>
 <div>
-    @Html.ActionLink("סל קניות", "Index", "User")
+    @Html.ActionLink("סל קניות", "ShoppingCart", "Home")
 </div>
 <div>
     @if (User.Identity.IsAuthenticated)
