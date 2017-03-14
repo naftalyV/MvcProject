@@ -12,12 +12,12 @@ namespace MvcProject.Controllers
         // GET: Home
         public ActionResult HomePage()
         {
-            var lst = new List<Product>();
+            var list = new List<Product>();
             using (var ctx = new BuyForUDB())
             {
-                lst = ctx.Product.Where(p => p.picture1 != null).ToList();
+                list = ctx.Product.Where(p => p.picture1 != null).ToList();
 
-                return View(lst);
+                return View(list);
             }
         }
              public ActionResult ShowInHomePage(int id)
@@ -32,27 +32,36 @@ namespace MvcProject.Controllers
         }
         public ActionResult OrderByName()
         {
-            List<Product> lst;
+            List<Product> list;
             using (var ctx = new BuyForUDB())
             {
-                lst = ctx.Product.Where(p => p.Status == State.ForSale).OrderBy(p => p.Title).ToList();
-                return View("HomePage", lst);
+                list = ctx.Product.Where(p => p.Status == State.ForSale).OrderBy(p => p.Title).ToList();
+                return View("HomePage", list);
             }
         }
 
         public ActionResult OrderByDate()
         {
-            List<Product> lst;
+            List<Product> list;
             using (var ctx = new BuyForUDB())
             {
-                lst = ctx.Product.Where(p => p.Status == State.ForSale).OrderBy(p => p.Date).ToList();
-                return View("HomePage", lst);
+                list = ctx.Product.Where(p => p.Status == State.ForSale).OrderBy(p => p.Date).ToList();
+                return View("HomePage", list);
             }
         }
         public ActionResult About()
         {
             return View();
         }
+        public ActionResult MoreDedails(int id)
+        {
+           // var list = new List<Product>();
+            using (var ctx = new BuyForUDB())
+            {
+              var  list = ctx.Product.Where(p => p.Id == id).FirstOrDefault();
 
+                return View(list);
+            }
+        }
     }
 }

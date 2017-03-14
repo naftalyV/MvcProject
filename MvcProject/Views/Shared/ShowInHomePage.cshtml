@@ -6,7 +6,7 @@
 </div>
 @Model.Title
 <br />
-    <img style="width:200px"
+    <img style="width:200px";
            src='@Url.Action("ShowInHomePage", "Home", new { id = Model.Id })' />
     <br />
    
@@ -14,9 +14,10 @@
     <br />
     @Model.Price $
     <br />
-    @*@Html.ActionLink("More Dedails", "ViewProduct", "Product", new { id = Model.Id }, string.Empty)
+       
+   @Html.ActionLink("פרטים נוספים", "MoreDedails", "Home", new { id = Model.Id }, string.Empty)
     <br />
-    @if (User.Identity.IsAuthenticated && Model.State == BuyForU.Models.State.avaliable)
+  @*  @if (User.Identity.IsAuthenticated && Model.State == BuyForU.Models.State.avaliable)
     {
         @Html.ActionLink("Add To Shoping Card", "AddToShopingCard", "ShopingCart", new { id = Model.Id }, string.Empty)
     }*@

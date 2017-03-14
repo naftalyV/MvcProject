@@ -1,16 +1,12 @@
 ﻿
 @model List<MvcProject.Models.Product>
-@{
-//ViewBag.Title = "Index";
-//Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<h2     > דף הבית</h2>
+<h2> דף הבית</h2>
 @{
     <table>
 
         @{
 
-            var itemInRow = 4;
+           var itemInRow = 4;
             if (Model != null)
             {
                 var numOfItems = Model.Count();

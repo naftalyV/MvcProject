@@ -16,7 +16,7 @@ namespace MvcProject.Models
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Please enter a last name")]
         [StringLength(50)]
-        public string LastNama { get; set; }
+        public string LastName { get; set; }
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = "Please enter a email")]
