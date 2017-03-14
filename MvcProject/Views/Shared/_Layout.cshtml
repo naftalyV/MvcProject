@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +12,11 @@
 
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
-<body>
+<body dir="rtl">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -32,7 +34,7 @@
     </div>
 
     <div class="panel-default col-md-3">
-        <div class="panel-heading" style="margin-left: 0px ;height:650px; ">
+        <div class="panel-heading" style="margin-left: 0px ;height:650px;direction:rtl ">
             <div>
                 @if (User.Identity.IsAuthenticated)
             {

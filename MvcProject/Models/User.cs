@@ -37,7 +37,7 @@ namespace MvcProject.Models
         public string Password { get; set; }
         [Display(Name = "אימות סיסמא")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Fields \"Password\" and \"Confirm Password\" must be equal.")]
+        [Compare("Password", ErrorMessage = "שדות סיסמא ואימות סיסמא חיבות להיות זהות")]
         public string ConfirmPassword { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<Product> Products { get; set; }

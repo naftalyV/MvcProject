@@ -21,18 +21,22 @@ namespace MvcProject.Models
         public int? UserId { get; set; }
         [ForeignKey("Owner")]
         public int? OwnerId { get; set; }
+        [Display(Name = "כותרת")]
         [Required(ErrorMessage = "Please enter a Title")]
         [StringLength(50)]
         public string Title { get; set; }
+        [Display(Name = "תאור קצר")]
         [Required(ErrorMessage = "Please enter a Short Description")]
         [StringLength(500)]
         public string ShortDescription { get; set; }
+        [Display(Name = "תאור ארוך")]
         [Required(ErrorMessage = "Please enter a Long Description")]
         [StringLength(4000)]
         public string LongDescription { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+        [Display(Name = "מחיר")]
         [Required]
         public decimal Price { get; set; }
         [Required]
