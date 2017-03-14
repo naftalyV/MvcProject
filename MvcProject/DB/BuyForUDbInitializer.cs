@@ -24,7 +24,7 @@ namespace MvcProject
             {
                 Id = 1,
                 FirstName = "naftaly",
-                LastName = "waisenshtern",
+                LastNama = "waisenshtern",
                 BirthDate = DateTime.Now.AddYears(-32),
                 Email = "naftaly276@gmail.com",
                 UserName = "tooly",

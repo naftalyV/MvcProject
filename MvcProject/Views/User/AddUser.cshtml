@@ -3,13 +3,16 @@
 @{
     ViewBag.Title = "AddUser";
 }
+@if (!User.Identity.IsAuthenticated)
+{
+
 
 <h2>משתמש חדש</h2>
 @using (Html.BeginForm("SubmitUser", "User", FormMethod.Post,
-                                                                new { enctype = "multipart/form-data" }))
+                                                                    new { enctype = "multipart/form-data" }))
 
 {    @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
        
         <hr />
@@ -71,5 +74,5 @@
         </div>
     </div>
 }
-
+}
 

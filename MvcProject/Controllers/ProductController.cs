@@ -26,7 +26,7 @@ namespace MvcProject.Controllers
                 HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
              
 
-                p.picture1 = GetByteArray(wrapper[0]);
+                p.picture2 = GetByteArray(wrapper[0]);
                 p.picture2 = GetByteArray(wrapper[1]);
                 p.picture3 = GetByteArray(wrapper[2]);
             if// (ModelState.IsValid)
@@ -34,7 +34,7 @@ namespace MvcProject.Controllers
                 && p.ShortDescription != string.Empty
                 && p.LongDescription != string.Empty
                 && p.Price >= 0
-               && p.picture1 != null)
+               && p.picture2 != null)
             {
                 using ( var ctx = new BuyForUDB())
                 {

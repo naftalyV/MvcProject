@@ -1,6 +1,11 @@
-﻿
-@model List<MvcProject.Models.Product>
+﻿@model List<MvcProject.Models.Product>
+
 <h2> דף הבית</h2>
+<div>@Html.ActionLink("מיין לפי תאריך", "OrderByDate", "Home")
+</div>
+@Html.ActionLink("מיין לפי כותרת", "OrderByTitle", "Home")
+
+
 @{
     <table>
 

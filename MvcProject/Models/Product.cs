@@ -45,12 +45,4 @@ namespace MvcProject.Models
         public virtual User Owner { get; set; }
     }
 }
-        //[InverseProperty("Owner ")]
-        // [ForeignKey("Owner")]
-        //  [Column(Order = 1)]
-        //public User Owner { get; set; }
-        ////  [ForeignKey("User")]
-        //public User User { get; set; }
-        // // [Column(Order = 2)]
-        // [InverseProperty(" User")]
-        //  public int? UserId { get; set; }
+      
