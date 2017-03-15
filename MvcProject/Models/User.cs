@@ -35,6 +35,7 @@ namespace MvcProject.Models
         [StringLength(50)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [NotMapped]
         [Display(Name = "אימות סיסמא")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "שדות סיסמא ואימות סיסמא חיבות להיות זהות")]

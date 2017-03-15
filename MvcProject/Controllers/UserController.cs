@@ -18,7 +18,9 @@ namespace MvcProject.Controllers
             if (user.UserName == null || user.Password == null)
             {
                 // return View("HomePage", "Home");
-                return View();
+               // return View();
+                return RedirectToAction("HomePage", "Home",user);
+                //return View("HomePage", "");
             }
             else
             {
@@ -43,7 +45,7 @@ namespace MvcProject.Controllers
 
                     else
                     {
-                        ViewBag.masseg = "שם לא קיים";
+                        ViewBag.Messeg = "שם לא קיים";
                         return RedirectToAction("HomePage", "Home");
                         // return View("ShowInHomePage");
                     }
@@ -78,7 +80,7 @@ namespace MvcProject.Controllers
                         }
                         else
                         {
-                            ViewBag.massege = "שם משתמש כבר קיים";
+                            ViewBag.Massege = "שם משתמש כבר קיים";
                             return View("EditUser");
 
                         }
