@@ -17,10 +17,11 @@ namespace MvcProject.Controllers
         {
             if (user.UserName == null || user.Password == null)
             {
-                // return View("HomePage", "Home");
-               // return View();
-                return RedirectToAction("HomePage", "Home",user);
-                //return View("HomePage", "");
+                //string str = "!!!שדות שם משתמש וסיסמא הינם שדות חובה";
+                //return RedirectToAction("HomePage", "Home", new { Massege = str });
+                return View();
+                //return RedirectToAction("HomePage", "Home");
+
             }
             else
             {
@@ -45,9 +46,9 @@ namespace MvcProject.Controllers
 
                     else
                     {
-                        ViewBag.Messeg = "שם לא קיים";
-                        return RedirectToAction("HomePage", "Home");
-                        // return View("ShowInHomePage");
+                        string str = "שם המשתמש או הסיסמא לא נכונים ";
+                        return RedirectToAction("HomePage", "Home", new { Massege = str });
+                        // return View("Login");
                     }
                 }
             }
@@ -63,8 +64,8 @@ namespace MvcProject.Controllers
 
         [HttpPost]
         public ActionResult EditUser(User u)
-        {
-            //if  //(ModelState.IsValid)
+      {
+            if  (ModelState.IsValid)
             {
                 using (var ctx = new BuyForUDB())
                 {
@@ -89,11 +90,12 @@ namespace MvcProject.Controllers
                     {
                         ctx.Users.AddOrUpdate(u);
                         ctx.SaveChanges();
+                        ViewBag.Massege = "העדכון הצליח";
                         return RedirectToAction("HomePage", "Home");
                     }
                 }
             }
-          //  return View("");
+            return View("");
 
         }
         public ActionResult EditUser()
@@ -108,7 +110,7 @@ namespace MvcProject.Controllers
                 }
                 else
                 {
-                    return View();
+                    return View(new User());
                 }
             }
                

@@ -14,13 +14,13 @@ namespace MvcProject.Controllers
         [Authorize]
         public ActionResult SubmitData()
         {
-            return View("AddProduct");
+            return View("AddProduct",new Product());
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult SubmitData(Product p)
-        {
+       {
                 
             
                 HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
@@ -29,12 +29,12 @@ namespace MvcProject.Controllers
                 p.picture1 = GetByteArray(wrapper[0]);
                 p.picture2 = GetByteArray(wrapper[1]);
                 p.picture3 = GetByteArray(wrapper[2]);
-            if// (ModelState.IsValid)
-               (p.Title != string.Empty
-                && p.ShortDescription != string.Empty
-                && p.LongDescription != string.Empty
-                && p.Price >= 0
-               && p.picture1 != null)
+            if(ModelState.IsValid)
+              // (p.Title != string.Empty
+              //  && p.ShortDescription != string.Empty
+              //  && p.LongDescription != string.Empty
+              //  && p.Price >= 0
+              //)
             {
                 using ( var ctx = new BuyForUDB())
                 {

@@ -21,6 +21,7 @@ namespace MvcProject.Models
         public string LastNama { get; set; }
         [Display(Name = "תאריך לידה")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
         [Display(Name = "דואר אלקטרוני")]
         [Required(ErrorMessage = "Please enter a email")]

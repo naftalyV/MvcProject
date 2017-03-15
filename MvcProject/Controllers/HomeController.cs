@@ -11,12 +11,17 @@ namespace MvcProject.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult HomePage(User user)
+        public ActionResult HomePage(string Massege)
         {
+           
+            if (Massege != null)
+            {
+                ViewBag.Massege = Massege;
+            }
             var list = new List<Product>();
             using (var ctx = new BuyForUDB())
             {
-                list = ctx.Product.Where(p => p.picture1 != null).ToList();
+                list = ctx.Product.ToList();
 
                 return View(list);
             }
@@ -27,8 +32,12 @@ namespace MvcProject.Controllers
             {
 
                 var imageData = ctx.Product.Where(p => p.Id == id && p.picture1!= null).FirstOrDefault();
-
+                if (imageData!=null)
+                {
                 return File(imageData.picture1, "image/jpg");
+
+                }
+                return View();
             }
         }
         public ActionResult OrderByTitle()
