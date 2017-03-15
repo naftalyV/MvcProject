@@ -5,39 +5,48 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-
+using System.Data.Entity.Migrations;
 namespace MvcProject.Controllers
 {
     public class UserController : Controller
     {
-        
+
         // GET: User
         [HttpPost]
         public ActionResult Login(User user)
         {
-
-            using (var ctx = new BuyForUDB())
+            if (user.UserName == null || user.Password == null)
+            {
+                // return View("HomePage", "Home");
+                return View();
+            }
+            else
             {
 
-                var userDtails = ctx.Users.Where
-                    (u => u.UserName == user.UserName
-                    && u.Password == user.Password)
-                    .FirstOrDefault();
-
-                if (userDtails != null)
-               
+                using (var ctx = new BuyForUDB())
                 {
-                    //FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
-                    FormsAuthentication.SetAuthCookie($"{userDtails.UserName}", true);
+
+                    var userDtails = ctx.Users.Where
+                        (u => u.UserName == user.UserName
+                        && u.Password == user.Password)
+                        .FirstOrDefault();
+
+                    if (userDtails != null)
+
+                    {
+                        //FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
+                        FormsAuthentication.SetAuthCookie($"{userDtails.UserName}", true);
 
 
-                    return RedirectToAction("HomePage","Home");
-                }
+                        return RedirectToAction("HomePage", "Home");
+                    }
 
-                else
-                {
-                     return RedirectToAction("HomePage", "Home");
-                   // return View("ShowInHomePage");
+                    else
+                    {
+                        ViewBag.masseg = "שם לא קיים";
+                        return RedirectToAction("HomePage", "Home");
+                        // return View("ShowInHomePage");
+                    }
                 }
             }
         }
@@ -48,10 +57,7 @@ namespace MvcProject.Controllers
             return RedirectToAction("HomePage", "Home");
 
         }
-        //public ActionResult NewUser()
-        //{
-        //    return View("NewUser");
-        //}
+       
 
         [HttpPost]
         public ActionResult EditUser(User u)
@@ -62,8 +68,8 @@ namespace MvcProject.Controllers
                 {
                     if (!User.Identity.IsAuthenticated)
                     {
-                        var eu = ctx.Users.Where(User => User.UserName == u.UserName).FirstOrDefault();
-                        if (eu==null)
+                        var ExistsUser = ctx.Users.Where(User => User.UserName == u.UserName).FirstOrDefault();
+                        if (ExistsUser == null)
                         {
                             ctx.Users.Add(u);
                             ctx.SaveChanges();
@@ -77,9 +83,15 @@ namespace MvcProject.Controllers
 
                         }
                     }
+                    else
+                    {
+                        ctx.Users.AddOrUpdate(u);
+                        ctx.SaveChanges();
+                        return RedirectToAction("HomePage", "Home");
+                    }
                 }
             }
-            return View("");
+          //  return View("");
 
         }
         public ActionResult EditUser()

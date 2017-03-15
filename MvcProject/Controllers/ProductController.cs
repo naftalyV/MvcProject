@@ -26,7 +26,7 @@ namespace MvcProject.Controllers
                 HttpFileCollectionWrapper wrapper = HttpContext.Request.Files as HttpFileCollectionWrapper;
              
 
-                p.picture2 = GetByteArray(wrapper[0]);
+                p.picture1 = GetByteArray(wrapper[0]);
                 p.picture2 = GetByteArray(wrapper[1]);
                 p.picture3 = GetByteArray(wrapper[2]);
             if// (ModelState.IsValid)

@@ -4,6 +4,8 @@
 </div>
 @Model.Title
 <br />
+@Model.Date
+<br />
     <img style="width:200px"
            src='@Url.Action("ShowInHomePage", "Home", new { id = Model.Id })' />
     <br />
@@ -15,8 +17,8 @@
        
    @Html.ActionLink("פרטים נוספים", "MoreDedails", "Home", new { id = Model.Id }, string.Empty)
     <br />
-  @*  @if (User.Identity.IsAuthenticated && Model.State == BuyForU.Models.State.avaliable)
-    {
-        @Html.ActionLink("Add To Shoping Card", "AddToShopingCard", "ShopingCart", new { id = Model.Id }, string.Empty)
-    }*@
-@*</div>*@
+        @Html.ActionLink("הוסף לסל", "AddToShopingCard", "ShopingCart", new { id = Model.Id }, string.Empty)
+    @*@if (User.Identity.IsAuthenticated && Model.Status == MvcProject.Models.State.ForSale)*@
+    @*{
+    }
+</div>*@
