@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DB\BuyForUDB.cs" />
     <Compile Include="DB\BuyForUDbInitializer.cs" />
@@ -183,6 +184,7 @@
     <Content Include="Views\Home\ShowPicture2.cshtml" />
     <Content Include="Views\Home\ShowPicture3.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\ShoppingCart\Cart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

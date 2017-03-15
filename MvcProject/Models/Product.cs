@@ -39,7 +39,7 @@ namespace MvcProject.Models
         [Display(Name = "מחיר")]
         [Required]
         public decimal Price { get; set; }
-        [Required]
+     
         public byte[] picture1 { get; set; }
         public byte[] picture2 { get; set; }
         public byte[] picture3 { get; set; }

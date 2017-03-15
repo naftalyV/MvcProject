@@ -5,39 +5,51 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-
+using System.Data.Entity.Migrations;
 namespace MvcProject.Controllers
 {
     public class UserController : Controller
     {
-        
+
         // GET: User
         [HttpPost]
         public ActionResult Login(User user)
         {
+            if (user.UserName == null || user.Password == null)
+            {
+                //string str = "!!!שדות שם משתמש וסיסמא הינם שדות חובה";
+                //return RedirectToAction("HomePage", "Home", new { Massege = str });
+                return View();
+                //return RedirectToAction("HomePage", "Home");
 
-            using (var ctx = new BuyForUDB())
+            }
+            else
             {
 
-                var userDtails = ctx.Users.Where
-                    (u => u.UserName == user.UserName
-                    && u.Password == user.Password)
-                    .FirstOrDefault();
-
-                if (userDtails != null)
-               
+                using (var ctx = new BuyForUDB())
                 {
-                    //FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
-                    FormsAuthentication.SetAuthCookie($"{userDtails.UserName}", true);
+
+                    var userDtails = ctx.Users.Where
+                        (u => u.UserName == user.UserName
+                        && u.Password == user.Password)
+                        .FirstOrDefault();
+
+                    if (userDtails != null)
+
+                    {
+                        //FormsAuthentication.SetAuthCookie($"{userDtails.FirstName} {userDtails.LastNama}", true);
+                        FormsAuthentication.SetAuthCookie($"{userDtails.UserName}", true);
 
 
-                    return RedirectToAction("HomePage","Home");
-                }
+                        return RedirectToAction("HomePage", "Home");
+                    }
 
-                else
-                {
-                     return RedirectToAction("HomePage", "Home");
-                   // return View("ShowInHomePage");
+                    else
+                    {
+                        string str = "שם המשתמש או הסיסמא לא נכונים ";
+                        return RedirectToAction("HomePage", "Home", new { Massege = str });
+                        // return View("Login");
+                    }
                 }
             }
         }
@@ -48,22 +60,19 @@ namespace MvcProject.Controllers
             return RedirectToAction("HomePage", "Home");
 
         }
-        //public ActionResult NewUser()
-        //{
-        //    return View("NewUser");
-        //}
+       
 
         [HttpPost]
         public ActionResult EditUser(User u)
-        {
-            //if  //(ModelState.IsValid)
+      {
+            if  (ModelState.IsValid)
             {
                 using (var ctx = new BuyForUDB())
                 {
                     if (!User.Identity.IsAuthenticated)
                     {
-                        var eu = ctx.Users.Where(User => User.UserName == u.UserName).FirstOrDefault();
-                        if (eu==null)
+                        var ExistsUser = ctx.Users.Where(User => User.UserName == u.UserName).FirstOrDefault();
+                        if (ExistsUser == null)
                         {
                             ctx.Users.Add(u);
                             ctx.SaveChanges();
@@ -72,10 +81,17 @@ namespace MvcProject.Controllers
                         }
                         else
                         {
-                            ViewBag.massege = "שם משתמש כבר קיים";
+                            ViewBag.Massege = "שם משתמש כבר קיים";
                             return View("EditUser");
 
                         }
+                    }
+                    else
+                    {
+                        ctx.Users.AddOrUpdate(u);
+                        ctx.SaveChanges();
+                        ViewBag.Massege = "העדכון הצליח";
+                        return RedirectToAction("HomePage", "Home");
                     }
                 }
             }
@@ -94,7 +110,7 @@ namespace MvcProject.Controllers
                 }
                 else
                 {
-                    return View();
+                    return View(new User());
                 }
             }
                

@@ -4,18 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace MvcProject.Controllers
 {
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult HomePage()
+        public ActionResult HomePage(string Massege)
         {
+           
+            if (Massege != null)
+            {
+                ViewBag.Massege = Massege;
+            }
             var list = new List<Product>();
             using (var ctx = new BuyForUDB())
             {
-                list = ctx.Product.Where(p => p.picture1 != null).ToList();
+                list = ctx.Product.ToList();
 
                 return View(list);
             }
@@ -26,8 +32,12 @@ namespace MvcProject.Controllers
             {
 
                 var imageData = ctx.Product.Where(p => p.Id == id && p.picture1!= null).FirstOrDefault();
-
+                if (imageData!=null)
+                {
                 return File(imageData.picture1, "image/jpg");
+
+                }
+                return View();
             }
         }
         public ActionResult OrderByTitle()
@@ -55,13 +65,13 @@ namespace MvcProject.Controllers
         }
         public ActionResult MoreDedails(int id)
         {
-          
+            Product Dedails;
             using (var ctx = new BuyForUDB())
             {
-              var Dedails = ctx.Product.Where(p => p.Id == id).FirstOrDefault();
+               Dedails = ctx.Product.Include(p => p.Owner).Where(p => p.Id == id).FirstOrDefault();
 
-                return View(Dedails);
             }
+                return View(Dedails);
         }
         public ActionResult ShowPicture2(int id)
         {

@@ -21,6 +21,7 @@ namespace MvcProject.Models
         public string LastNama { get; set; }
         [Display(Name = "תאריך לידה")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
         [Display(Name = "דואר אלקטרוני")]
         [Required(ErrorMessage = "Please enter a email")]
@@ -35,6 +36,7 @@ namespace MvcProject.Models
         [StringLength(50)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [NotMapped]
         [Display(Name = "אימות סיסמא")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "שדות סיסמא ואימות סיסמא חיבות להיות זהות")]
