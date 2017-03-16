@@ -70,16 +70,6 @@ namespace MvcProject.Controllers
             return null;
         }
 
-        //[HttpPost]
-        //public ActionResult ShowInHomePage(int id)
-        //{
-        //    using (var ctx = new BuyForUDB())
-        //    {
-
-        //        var imageData = ctx.Product.Where(p => p.Id == id && p.picture1!=null).FirstOrDefault();
-
-        //        return File(imageData.picture1, "image/jpg");
-        //    }
-        //}
+     
     }
 }

@@ -17,9 +17,9 @@ namespace MvcProject.Controllers
         {
             if (user.UserName == null || user.Password == null)
             {
-                //string str = "!!!שדות שם משתמש וסיסמא הינם שדות חובה";
-                //return RedirectToAction("HomePage", "Home", new { Massege = str });
-                return View();
+                string str = "!!!שדות שם משתמש וסיסמא הינם שדות חובה";
+                return RedirectToAction("HomePage", "Home", new { Massege = str, user = user});
+                //return View();
                 //return RedirectToAction("HomePage", "Home");
 
             }

@@ -26,7 +26,23 @@ namespace MvcProject.Controllers
                 return View(list);
             }
         }
-             public ActionResult ShowInHomePage(int id)
+        [HttpPost]
+        public ActionResult HomePage(string Massege, User user)
+        {
+
+            if (Massege != null)
+            {
+                ViewBag.Massege = Massege;
+            }
+            var list = new List<Product>();
+            using (var ctx = new BuyForUDB())
+            {
+                list = ctx.Product.ToList();
+
+                return View(list);
+            }
+        }
+        public ActionResult ShowInHomePage(int id)
         {
             using (var ctx = new BuyForUDB())
             {

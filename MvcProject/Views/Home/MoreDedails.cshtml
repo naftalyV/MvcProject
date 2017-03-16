@@ -110,7 +110,7 @@
 <p>
 @if (User.Identity.IsAuthenticated && Model.Status == MvcProject.Models.State.ForSale)
 {
-    @Html.ActionLink("הוסף לסל", "AddToShopingCard", "ShopingCart", new { id = Model.Id }, string.Empty)<br />
+    @Html.ActionLink("הוסף לסל", "AddToCart", "ShoppingCart", new { id = Model.Id }, null )<br />
 }
 @Html.ActionLink("דף הבית", "HomePage", "Home")
 </p>
