@@ -11,24 +11,9 @@ namespace MvcProject.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+      
         public ActionResult HomePage(string Massege)
         {
-           
-            if (Massege != null)
-            {
-                ViewBag.Massege = Massege;
-            }
-            var list = new List<Product>();
-            using (var ctx = new BuyForUDB())
-            {
-                list = ctx.Product.ToList();
-
-                return View(list);
-            }
-        }
-        [HttpPost]
-        public ActionResult HomePage(string Massege, User user)
-        {
 
             if (Massege != null)
             {
@@ -37,7 +22,7 @@ namespace MvcProject.Controllers
             var list = new List<Product>();
             using (var ctx = new BuyForUDB())
             {
-                list = ctx.Product.ToList();
+                list = ctx.Product.Where(p=>p.Status !=State.Sold).ToList();
 
                 return View(list);
             }

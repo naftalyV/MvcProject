@@ -30,11 +30,7 @@ namespace MvcProject.Controllers
                 p.picture2 = GetByteArray(wrapper[1]);
                 p.picture3 = GetByteArray(wrapper[2]);
             if(ModelState.IsValid)
-              // (p.Title != string.Empty
-              //  && p.ShortDescription != string.Empty
-              //  && p.LongDescription != string.Empty
-              //  && p.Price >= 0
-              //)
+             
             {
                 using ( var ctx = new BuyForUDB())
                 {

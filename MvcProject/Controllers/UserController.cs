@@ -81,7 +81,7 @@ namespace MvcProject.Controllers
                         }
                         else
                         {
-                            ViewBag.Massege = "שם משתמש כבר קיים";
+                            ViewBag.Massege = "!!!שם משתמש כבר קיים";
                             return View("EditUser");
 
                         }

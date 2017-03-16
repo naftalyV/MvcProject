@@ -16,7 +16,7 @@ namespace MvcProject
             
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            Database.SetInitializer(new BuyForUDbInitializer());
+           // Database.SetInitializer(new BuyForUDbInitializer());
         }
     }
 }
