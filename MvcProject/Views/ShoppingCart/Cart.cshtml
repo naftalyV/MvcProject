@@ -1,55 +1,52 @@
 ﻿@model List<MvcProject.Models.Product>
+@{decimal price = 0; }
 
-@using (Html.BeginForm("AddToCart", "ShoppingCart"))
-{
-
-
-    decimal price = 0;
-
-
-    <table>
-        <tr>
-            @for (int i = 0; i < Model.Count(); i++)
+<table>
+    <tr>
+        @for (int i = 0; i < Model.Count(); i++)
             {
-                @Html.Partial("ViewInCart", Model[i])
-                price += Model[i].Price;
+            @Html.Partial("ViewInCart", Model[i])
+            price += Model[i].Price;
 
-            }
-        </tr>
+        }
+    </tr>
+</table>
+<br />
+<div>   <span id="TotalPrice">@price</span>:סך הכל לתשלום</div>
 
-    </table>
-    <br />
-    <div>   <span id="TotalPrice">@price</span>:סך הכל לתשלום</div>
+<br />
 
-    <br />
 
-if (price > 0)
+@if (price > 0)
 {
-using (Html.BeginForm("Sale", "ShoppingCart"))
-{
+    using (Html.BeginForm("Sale", "ShoppingCart"))
+    {
 
-    <div class="form-group">
-        <div class="col-md-offset-3 col-md-10">
+        <div class="form-group BuyButton">
+            <div class="col-md-offset-3 col-md-10">
 
-            <input type="submit" value="קניה" class="btn btn-default" />
+                <input type="submit" value="קניה" class="btn btn-default" />
+            </div>
         </div>
-    </div>
-}
+    }
 
 }
-}
+
 
 <script>
     $(".checkboxes").change(function () {
         var inputBox = event.target;
-            $.ajax({            
+        $.ajax({
             url: "/ShoppingCart/RemoveFromCart/" + $(event.target).attr('dataid'),
             success: function (data) {
                 var totalprice = document.getElementById('TotalPrice');
-                totalprice.innerHTML = (parseFloat(totalprice.innerHTML) - data);
-                $(inputBox).parent().remove();                
-            }               
-        });        
+                totalprice.innerHTML = (parseFloat(totalprice.innerHTML) - data).toFixed(3);
+                if(parseFloat(totalprice.innerHTML)<0.01)
+                    $(".BuyButton").remove();
+
+                $(inputBox).parent().remove();
+            }
+        });
     });
-    
+
 </script>

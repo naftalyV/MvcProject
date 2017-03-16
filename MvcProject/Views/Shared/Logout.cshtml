@@ -5,11 +5,11 @@
         {
             <h4>בוקר טוב @User.Identity.Name</h4>
         }
-        else if (time > 12 && time < 17)
+        else if (time >= 12 && time < 17)
         {
             <h4>צהריים טובים @User.Identity.Name</h4>
         }
-        else
+        else if(time >= 17 || time < 6)
         {
             <h4>ערב טוב @User.Identity.Name</h4>
         }

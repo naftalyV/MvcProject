@@ -17,7 +17,7 @@ namespace MvcProject.Controllers
 
             if (Massege != null)
             {
-                ViewBag.Massege = Massege;
+                ViewBag.Massege1 = Massege;
             }
             var list = new List<Product>();
             using (var ctx = new BuyForUDB())

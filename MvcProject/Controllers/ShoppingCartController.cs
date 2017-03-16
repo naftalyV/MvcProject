@@ -70,7 +70,7 @@ namespace MvcProject.Controllers
                     item.Status = State.Sold;
                 }
                 ctx.SaveChanges();
-                ViewBag.Massege = "תודה על קניתך";
+                ViewBag.Massege1 = "תודה על קניתך";
                 return RedirectToAction("HomePage", "Home");
             }
         }
