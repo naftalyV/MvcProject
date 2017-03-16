@@ -26,6 +26,7 @@ namespace MvcProject.Controllers
         }
         public ActionResult AddToCart(int id)
         {
+            
             Product item;
             using (var ctx = new BuyForUDB())
             {

@@ -36,7 +36,7 @@ namespace MvcProject.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        [Range(1,50000)]
+        [Range(0.01,50000)]
         [Display(Name = "מחיר")]
         [Required]
         public decimal Price { get; set; }

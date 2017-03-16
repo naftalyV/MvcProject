@@ -22,8 +22,10 @@
     <div>   <span id="TotalPrice">@price</span>:סך הכל לתשלום</div>
 
     <br />
-}
-@using (Html.BeginForm("Sale", "ShoppingCart"))
+
+if (price > 0)
+{
+using (Html.BeginForm("Sale", "ShoppingCart"))
 {
 
     <div class="form-group">
@@ -34,6 +36,8 @@
     </div>
 }
 
+}
+}
 
 <script>
     $(".checkboxes").change(function () {
