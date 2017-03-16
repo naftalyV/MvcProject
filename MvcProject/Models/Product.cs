@@ -45,6 +45,8 @@ namespace MvcProject.Models
         public byte[] picture3 { get; set; }
         [Required]
         public  State Status{ get; set; }
+        [NotMapped]
+        public bool IsInCart { get; set; }
         public virtual User User { get; set; }
         public virtual User Owner { get; set; }
     }

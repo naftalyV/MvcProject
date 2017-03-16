@@ -31,7 +31,9 @@ namespace MvcProject.Controllers
             using (var ctx = new BuyForUDB())
             {
 
-                var imageData = ctx.Product.Where(p => p.Id == id && p.picture1!= null).FirstOrDefault();
+                var imageData = ctx.Product.Where(p => p.Id == id &&
+                p.picture1!= null &&
+                p.Status != State.Sold).FirstOrDefault();
                 if (imageData!=null)
                 {
                 return File(imageData.picture1, "image/jpg");
@@ -45,7 +47,8 @@ namespace MvcProject.Controllers
             List<Product> list;
             using (var ctx = new BuyForUDB())
             {
-                list = ctx.Product.Where(p => p.Status == State.ForSale).OrderBy(p => p.Title).ToList();
+                list = ctx.Product.Where(p => p.Status != State.Sold)
+                    .OrderBy(p => p.Title).ToList();
                 return View("HomePage", list);
             }
         }
@@ -55,7 +58,7 @@ namespace MvcProject.Controllers
             List<Product> list;
             using (var ctx = new BuyForUDB())
             {
-                list = ctx.Product.Where(p => p.Status == State.ForSale).OrderBy(p => p.Date).ToList();
+                list = ctx.Product.Where(p => p.Status != State.Sold).OrderBy(p => p.Date).ToList();
                 return View("HomePage", list);
             }
         }

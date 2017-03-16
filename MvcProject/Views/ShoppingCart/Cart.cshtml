@@ -1,19 +1,31 @@
 ﻿@model List<MvcProject.Models.Product>
 
-@{
+@using (Html.BeginForm("AddToCart", "ShoppingCart"))
+{
+
+
     decimal price = 0;
-}
+
 
 <table>
     <tr>
         @for (int i = 0; i < Model.Count(); i++)
         {
-            @Html.Partial("ViewProductInShopingCart", Model[i])
+            @Html.Partial("ViewInCart", Model[i])
             price += Model[i].Price;
+       
         }
     </tr>
+   
 </table>
-
-Price: @price
 <br />
+<div>   @price:סך הכל לתשלום</div>
+
+<br />
+<div class="form-group">
+    <div class="col-md-offset-3 col-md-10">
+        <input type="submit" value="קניה" class="btn btn-default" />
+    </div>
+</div>
 @Html.ActionLink("Buy All Items", "BuyAllItems", "ShopingCart")
+     }

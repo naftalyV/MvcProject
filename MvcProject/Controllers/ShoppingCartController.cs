@@ -23,7 +23,7 @@ namespace MvcProject.Controllers
             }
             return View(ItemToCart);
         }
-        [HttpPost]
+       [HttpPost]
         public ActionResult AddToCart(int id)
         {
             Product item;
@@ -38,6 +38,8 @@ namespace MvcProject.Controllers
                 }
                
                 item.Status = State.ShoppingCart;
+                item.IsInCart = true;
+                ctx.SaveChanges();
             }
             return View(item);
         }
