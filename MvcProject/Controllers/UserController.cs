@@ -46,7 +46,7 @@ namespace MvcProject.Controllers
 
                     else
                     {
-                        string str = "שם המשתמש או הסיסמא לא נכונים ";
+                        string str = "!!!שם המשתמש או הסיסמא לא נכונים ";
                         return RedirectToAction("HomePage", "Home", new { Massege = str });
                         // return View("Login");
                     }
@@ -63,7 +63,7 @@ namespace MvcProject.Controllers
        
 
         [HttpPost]
-        public ActionResult EditUser(User u)
+        public ViewResult EditUser(User u)
       {
             if  (ModelState.IsValid)
             {
@@ -76,14 +76,14 @@ namespace MvcProject.Controllers
                         {
                             ctx.Users.Add(u);
                             ctx.SaveChanges();
-                            ViewBag.Message = "פרטי משתמש נקלטו בהצלחה";
-                            return RedirectToAction("HomePage", "Home");
+                            ViewBag.Massege = "פרטי משתמש נקלטו בהצלחה";
+                            // return RedirectToAction("HomePage", "Home");
+                            return View("EditUser");
                         }
                         else
                         {
                             ViewBag.Massege = "!!!שם משתמש כבר קיים";
                             return View("EditUser");
-
                         }
                     }
                     else
@@ -91,11 +91,12 @@ namespace MvcProject.Controllers
                         ctx.Users.AddOrUpdate(u);
                         ctx.SaveChanges();
                         ViewBag.Massege = "העדכון הצליח";
-                        return RedirectToAction("HomePage", "Home");
+                            return View("EditUser");
+                       // return RedirectToAction("HomePage", "Home");
                     }
                 }
             }
-            return View("");
+            return View("EditUser" ,new User());
 
         }
         public ActionResult EditUser()
@@ -110,7 +111,7 @@ namespace MvcProject.Controllers
                 }
                 else
                 {
-                    return View(new User());
+                    return View("EditUser", new User());
                 }
             }
                
