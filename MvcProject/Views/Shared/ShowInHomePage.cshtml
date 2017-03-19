@@ -19,7 +19,7 @@
     @Model.Price $
     <br />
        
-   @Html.ActionLink("פרטים נוספים", "MoreDedails", "Home", new { id = Model.Id }, string.Empty)
+   @Html.ActionLink("פרטים נוספים", "MoreDedails1", "Home", new { id = Model.Id }, string.Empty)
     <br />
     @if (User.Identity.IsAuthenticated && Model.Status == MvcProject.Models.State.ForSale)
     {

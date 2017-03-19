@@ -7,3 +7,8 @@ body{
 img{
     width:200px
 }
+dt{
+    direction:rtl;
+    float:right;
+        
+}

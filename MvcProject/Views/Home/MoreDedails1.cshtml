@@ -1,27 +1,39 @@
 ﻿@model MvcProject.Models.Product
 
-
 @{
-    ViewBag.Title = "MoreDedails";
+    ViewBag.Title = "MoreDedails1";
 }
 
-<h2>פרטים נוספים</h2>
+<h2>MoreDedails1</h2>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-       
-
-     
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md" })
+            @Html.LabelFor(model => model.OwnerId, "OwnerId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("OwnerId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
@@ -60,7 +72,29 @@
             </div>
         </div>
 
-      
+        <div class="form-group">
+            @Html.LabelFor(model => model.picture1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.picture1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.picture1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.picture2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.picture2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.picture2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.picture3, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.picture3, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.picture3, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -81,111 +115,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-
-
-        <dt>
-            @Html.DisplayName("פרטי המוצר")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-
-
-
-
-        <dt>
-            @Html.DisplayName("תאריך פרסום")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayName("מחיר")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)$
-        </dd>
-
-
-
-        <dd>
-            @if (Model.picture1 != null)
-            {
-
-                <img 
-                     src='@Url.Action("ShowInHomePage", "Home", new { id = Model.Id })' />
-            }
-            @if (Model.picture2 != null)
-            {
-                <img
-                     src='@Url.Action("ShowPicture2", "Home", new { id = Model.Id })' />
-
-            }
-            @if (Model.picture3 != null)
-            {
-                <img
-                     src='@Url.Action("ShowPicture3", "Home", new { id = Model.Id })' />
-
-            }
-
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.LongDescription)
-        </dd>
-    </dl>
-</div>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            
-            @Html.DisplayName("פרטי המפרסם")<br />
-        </dt>
-        
-        <dd>
-                @Html.DisplayFor(model => model.Owner.UserName)
-
-
-            </dd>
-        <dt>
-            @Html.DisplayName("דואר אלקטרוני")
-        </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Owner.Email)
-            </dd>
-        <dt>
-            @Html.DisplayName("שנת לידה")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Owner.BirthDate)
-        </dd>
-    </dl>
-</div>
-
-
-
-
-
-<p>
-@if (User.Identity.IsAuthenticated && Model.Status == MvcProject.Models.State.ForSale)
-{
-    @Html.ActionLink("הוסף לסל", "AddToCart", "ShoppingCart", new { id = Model.Id }, null )<br />
-}
-@Html.ActionLink("דף הבית", "HomePage", "Home")
-</p>
