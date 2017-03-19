@@ -3,6 +3,7 @@
 
 <table>
     <tr>
+        להסרה מהסל סמן את המוצר!
         @for (int i = 0; i < Model.Count(); i++)
             {
             @Html.Partial("ViewInCart", Model[i])
@@ -12,7 +13,7 @@
     </tr>
 </table>
 <br />
-<div>   <span id="TotalPrice">@price</span>:סך הכל לתשלום</div>
+<div>   סך הכל לתשלום:<span id="TotalPrice">$@price</span></div>
 
 <br />
 
@@ -23,7 +24,7 @@
     {
 
         <div class="form-group BuyButton">
-            <div class="col-md-offset-3 col-md-10">
+            <div class="col-md-offset-3 col-md-9">
 
                 <input type="submit" value="קניה" class="btn btn-default" />
             </div>

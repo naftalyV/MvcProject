@@ -5,8 +5,8 @@
     @Html.CheckBoxFor(x => x.IsInCart, new { dataid = Model.Id, @class = "checkboxes" })
 
 
-    <span>:מחיר @Model.Price </span>
     @Html.ActionLink(@Model.Title, "MoreDedails", "Home", new { id = Model.Id }, "")
+    <span>מחיר: @Model.Price </span>$
     <br />
 
 </div>

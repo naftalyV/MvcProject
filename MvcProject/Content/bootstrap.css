@@ -60,6 +60,7 @@ html {
 
 body {
   margin: 0;
+  direction:rtl;
 }
 
 a:focus {
@@ -138,6 +139,7 @@ sub {
 
 img {
   border: 0;
+  width:200px;
 }
 
 svg:not(:root) {
