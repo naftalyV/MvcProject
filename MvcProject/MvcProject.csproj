@@ -187,7 +187,6 @@
     <Content Include="Views\User\EditUser.cshtml" />
     <Content Include="Views\ShoppingCart\Cart.cshtml" />
     <Content Include="Views\Shared\ViewInCart.cshtml" />
-    <Content Include="Views\Home\MoreDedails1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
