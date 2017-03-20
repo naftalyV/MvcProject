@@ -3,8 +3,7 @@
 
 @using (Html.BeginForm("Login", "User"))
 {
-    if (!User.Identity.IsAuthenticated)
-    {
+   
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -43,7 +42,6 @@
             </div>
         </div>
     </div>
-    }
 }
        
 
