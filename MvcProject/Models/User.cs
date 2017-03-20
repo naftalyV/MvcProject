@@ -21,7 +21,8 @@ namespace MvcProject.Models
         public string LastNama { get; set; }
         [Display(Name = "תאריך לידה")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = false)]
+        [Range(typeof(DateTime), "1/2/1900", "1/1/2017", ErrorMessage = "Value for {0} must be between {1:d} and {2:d}")]
         public DateTime BirthDate { get; set; }
         [Display(Name = "דואר אלקטרוני")]
         [Required(ErrorMessage = "Please enter a email")]
@@ -46,5 +47,6 @@ namespace MvcProject.Models
 
         [InverseProperty("Owner")]
         public virtual ICollection<Product> ProductsToSell { get; set; }
+         
     }
 }
