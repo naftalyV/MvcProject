@@ -17,7 +17,7 @@ namespace MvcProject.Controllers
         {
             if (user.UserName == null || user.Password == null)
             {
-                string str = "!!!שדות שם משתמש וסיסמא הינם שדות חובה";
+                string str = "שדות שם משתמש וסיסמא הינם שדות חובה!!!";
                 return RedirectToAction("HomePage", "Home", new { Massege = str, user = user});
                 //return View();
                 //return RedirectToAction("HomePage", "Home");
@@ -46,7 +46,7 @@ namespace MvcProject.Controllers
 
                     else
                     {
-                        string str = "!!!שם המשתמש או הסיסמא לא נכונים ";
+                        string str = "שם המשתמש או הסיסמא לא נכונים !!!";
                         return RedirectToAction("HomePage", "Home", new { Massege = str });
                         // return View("Login");
                     }
@@ -82,7 +82,7 @@ namespace MvcProject.Controllers
                         }
                         else
                         {
-                            ViewBag.Massege = "!!!שם משתמש כבר קיים";
+                            ViewBag.Massege = "שם משתמש כבר קיים !!!";
                             return View("EditUser");
                         }
                     }

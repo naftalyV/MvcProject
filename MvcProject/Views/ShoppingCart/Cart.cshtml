@@ -1,9 +1,9 @@
 ﻿@model List<MvcProject.Models.Product>
 @{decimal price = 0; }
-
+<h2>סל קניות</h2>
 <table>
     <tr>
-        להסרה מהסל סמן את המוצר!
+       
         @for (int i = 0; i < Model.Count(); i++)
             {
             @Html.Partial("ViewInCart", Model[i])
@@ -22,7 +22,7 @@
 {
     using (Html.BeginForm("Sale", "ShoppingCart"))
     {
-
+        <h3>להסרה מהסל סמן את המוצר!</h3>
         <div class="form-group BuyButton">
             <div class="col-md-offset-3 col-md-9">
 
