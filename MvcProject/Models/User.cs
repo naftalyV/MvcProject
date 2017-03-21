@@ -20,7 +20,7 @@ namespace MvcProject.Models
         public string LastNama { get; set; }
         [Display(Name = "תאריך לידה")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Range(typeof(DateTime), "1/1/1900", "21/3/2017", ErrorMessage = "Value for {0} must be between {1:d} and {2:d}")]
         public DateTime BirthDate { get; set; }
         [Display(Name = "דואר אלקטרוני")]
