@@ -18,7 +18,7 @@ namespace MvcProject.Controllers
             if (user.UserName == null || user.Password == null)
             {
                 string str = "שדות שם משתמש וסיסמא הינם שדות חובה!!!";
-                return RedirectToAction("HomePage", "Home", new { Massege = str, user = user});
+                return RedirectToAction("HomePage", "Home", new { Massege = str, user = user });
                 //return View();
                 //return RedirectToAction("HomePage", "Home");
 
@@ -60,18 +60,18 @@ namespace MvcProject.Controllers
             return RedirectToAction("HomePage", "Home");
 
         }
-       
+
 
         [HttpPost]
         public ViewResult EditUser(User u)
-      {
-            if  (ModelState.IsValid)
+        {
+            if (ModelState.IsValid)
             {
                 using (var ctx = new BuyForUDB())
                 {
+                    var ExistsUser = ctx.Users.Where(User => User.UserName == u.UserName).FirstOrDefault();
                     if (!User.Identity.IsAuthenticated)
                     {
-                        var ExistsUser = ctx.Users.Where(User => User.UserName == u.UserName).FirstOrDefault();
                         if (ExistsUser == null)
                         {
                             ctx.Users.Add(u);
@@ -88,25 +88,26 @@ namespace MvcProject.Controllers
                     }
                     else
                     {
+                        ExistsUser.ConfirmPassword = u.ConfirmPassword;
                         ctx.Users.AddOrUpdate(u);
                         ctx.SaveChanges();
                         ViewBag.Massege = "העדכון הצליח";
-                            return View("EditUser");
-                       // return RedirectToAction("HomePage", "Home");
+                        return View("EditUser");
+                        // return RedirectToAction("HomePage", "Home");
                     }
                 }
             }
-            return View("EditUser" ,new User());
+            return View("EditUser", new User());
 
         }
         public ActionResult EditUser()
         {
             using (var ctx = new BuyForUDB())
             {
-                var user = ctx.Users.SingleOrDefault(u => u.UserName == User.Identity.Name);
-                if (user!=null)
+                var user = ctx.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+                if (user != null)
                 {
-            return View("EditUser", user);
+                    return View("EditUser", user);
 
                 }
                 else
@@ -114,8 +115,8 @@ namespace MvcProject.Controllers
                     return View("EditUser", new User());
                 }
             }
-               
-         
+
+
         }
     }
 }
